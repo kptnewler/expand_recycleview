@@ -1,8 +1,8 @@
 Properties properties = new Properties()
 properties.load(new FileInputStream("F:\\Code\\Android\\expandable-recycler-view\\bintray.properties"))
 
-def gitUrl = 'https://github.com/LeLe673893702/expandable-recycler-view.git'   // Git仓库的url
-def siteUrl = 'https://github.com/LeLe673893702/expandable-recycler-view'   // 项目的主页
+def gitUrl = 'https://github.com/LeLe673893702/expand_recycleview.git.git'   // Git仓库的url
+def siteUrl = 'https://github.com/LeLe673893702/expand_recycleview.git'   // 项目的主页
 
 version = properties.getProperty("version")
 group = "com.newler"
