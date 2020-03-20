@@ -77,15 +77,11 @@ public abstract class ExpandableRecyclerViewAdapter<GVH extends GroupViewHolder,
     switch (listPos.type) {
       case ExpandableListPosition.GROUP:
         onBindGroupViewHolder((GVH) holder, position, group);
-
-        if (isGroupExpanded(group)) {
-          ((GVH) holder).expand();
-        } else {
-          ((GVH) holder).collapse();
-        }
         break;
       case ExpandableListPosition.CHILD:
         onBindChildViewHolder((CVH) holder, position, group, listPos.childPos);
+        break;
+      default:
         break;
     }
   }
@@ -120,8 +116,8 @@ public abstract class ExpandableRecyclerViewAdapter<GVH extends GroupViewHolder,
   @Override
   public void onGroupExpanded(int positionStart, int itemCount) {
     //update header
-    int headerPosition = positionStart - 1;
-    notifyItemChanged(headerPosition);
+//    int headerPosition = positionStart - 1;
+//    notifyItemChanged(headerPosition);
 
     // only insert if there items to insert
     if (itemCount > 0) {
@@ -142,8 +138,8 @@ public abstract class ExpandableRecyclerViewAdapter<GVH extends GroupViewHolder,
   @Override
   public void onGroupCollapsed(int positionStart, int itemCount) {
     //update header
-    int headerPosition = positionStart - 1;
-    notifyItemChanged(headerPosition);
+//    int headerPosition = positionStart - 1;
+//    notifyItemChanged(headerPosition);
 
     // only remote if there items to remove
     if (itemCount > 0) {
@@ -222,7 +218,7 @@ public abstract class ExpandableRecyclerViewAdapter<GVH extends GroupViewHolder,
    * Fetches the expandable state map from the saved instance state {@link Bundle}
    * and restores the expanded states of all of the list items.
    * <p>
-   * Should be called from {@link Activity#onRestoreInstanceState(Bundle)}  in
+   * Should be called from {@link Activity#}  in
    * the {@link Activity} that hosts the RecyclerView that this
    * {@link ExpandableRecyclerViewAdapter} is attached to.
    * <p>

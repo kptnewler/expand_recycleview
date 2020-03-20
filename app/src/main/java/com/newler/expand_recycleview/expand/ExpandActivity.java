@@ -5,7 +5,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.newler.expand_recycleview.Genre;
 import com.newler.expand_recycleview.R;
+import com.newler.expandablerecyclerview.listeners.OnGroupClickListener;
+
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +42,8 @@ public class ExpandActivity extends AppCompatActivity {
       ((DefaultItemAnimator) animator).setSupportsChangeAnimations(false);
     }
 
-    adapter = new GenreAdapter(makeGenres());
+    final List<Genre> genres = makeGenres();
+    adapter = new GenreAdapter(genres);
 
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(adapter);
@@ -48,6 +53,15 @@ public class ExpandActivity extends AppCompatActivity {
       @Override
       public void onClick(View v) {
         adapter.toggleGroup(makeClassicGenre());
+      }
+    });
+
+    adapter.setOnGroupClickListener(new OnGroupClickListener() {
+      @Override
+      public boolean onGroupClick(int flatPos) {
+        boolean expand = !genres.get(flatPos).isExpand();
+        genres.get(flatPos).setExpand(!expand);
+        return !genres.get(flatPos).isExpand();
       }
     });
   }
