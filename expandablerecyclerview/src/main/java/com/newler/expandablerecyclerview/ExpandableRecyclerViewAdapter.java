@@ -211,7 +211,7 @@ public abstract class ExpandableRecyclerViewAdapter<GVH extends GroupViewHolder,
    * expanded state map
    */
   public void onSaveInstanceState(Bundle savedInstanceState) {
-    savedInstanceState.putBooleanArray(EXPAND_STATE_MAP, expandableList.expandedGroupIndexes);
+    savedInstanceState.putIntegerArrayList(EXPAND_STATE_MAP, expandableList.expandedGroupIndexes);
   }
 
   /**
@@ -230,7 +230,7 @@ public abstract class ExpandableRecyclerViewAdapter<GVH extends GroupViewHolder,
     if (savedInstanceState == null || !savedInstanceState.containsKey(EXPAND_STATE_MAP)) {
       return;
     }
-    expandableList.expandedGroupIndexes = savedInstanceState.getBooleanArray(EXPAND_STATE_MAP);
+    expandableList.expandedGroupIndexes = savedInstanceState.getIntegerArrayList(EXPAND_STATE_MAP);
     notifyDataSetChanged();
   }
 
@@ -249,6 +249,10 @@ public abstract class ExpandableRecyclerViewAdapter<GVH extends GroupViewHolder,
    */
   public List<? extends ExpandableGroup> getGroups() {
     return expandableList.groups;
+  }
+
+  public List<Integer> getExpandedGroupIndexes() {
+    return expandableList.expandedGroupIndexes;
   }
 
   /**

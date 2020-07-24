@@ -1,5 +1,6 @@
 package com.newler.expandablerecyclerview.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -16,14 +17,14 @@ import java.util.List;
 public class ExpandableList {
 
   public List<? extends ExpandableGroup> groups;
-  public boolean[] expandedGroupIndexes;
+  public ArrayList<Integer> expandedGroupIndexes;
 
   public ExpandableList(List<? extends ExpandableGroup> groups) {
     this.groups = groups;
 
-    expandedGroupIndexes = new boolean[groups.size()];
+    expandedGroupIndexes = new ArrayList<>(groups.size());
     for (int i = 0; i < groups.size(); i++) {
-      expandedGroupIndexes[i] = groups.get(i).isExpand();
+      expandedGroupIndexes.add(groups.get(i).isExpand() ? 1 : 0);
     }
   }
 
@@ -34,7 +35,7 @@ public class ExpandableList {
    * group + 1 for the group header
    */
   private int numberOfVisibleItemsInGroup(int group) {
-    if (expandedGroupIndexes[group]) {
+    if (expandedGroupIndexes.get(group) == 1) {
       return groups.get(group).getItemCount() + 1;
     } else {
       return 1;

@@ -24,6 +24,10 @@ public class ExpandableGroup<T extends Parcelable> implements Parcelable {
     this.items = items;
   }
 
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
   public String getTitle() {
     return title;
   }
